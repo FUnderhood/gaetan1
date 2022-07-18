@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Discover Games</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{loadedGames[0].title}}</ion-card-title>
+          </ion-card-header>
+          <ion-img [src]="loadedGames[0].imageUrl"></ion-img>
+          <ion-card-content>
+            <p>{{loadedGames[0].description}}</p>
+          </ion-card-content>
+          <div class="text-right" padding>
+            <ion-button
+              fill="clear"
+              color="primary"
+              [routerLink]="['/', 'games', 'tabs', 'discover', 'loadedGames[0].id']"
+            >
+            More
+          </ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-list>
+          <ion-item
+            *ngFor='let game of loadedGames.slice(1)'
+            [routerLink]="['/', 'games', 'tabs', 'discover', 'game.id']"
+            detail
+          >
+            <ion-thumbnail slot="start">
+              <ion-img [src]='game.imageUrl' ></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{game.title}}</h2>
+              <p>{{game.description}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
